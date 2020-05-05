@@ -1,0 +1,11 @@
+#! /bin/bash
+#Android
+cd swapi_adr/scripts
+./release_build
+./create_s_link
+
+cd -
+
+#IOS
+cd swapi_ios/scripts
+./release_build

@@ -1,0 +1,17 @@
+[package]
+name = "swapi_ios"
+version = "0.1.0"
+authors = ["Igor Steblii <xajik0@ggmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "swapi"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+swapi_core = { path="../swapi_core/" }
+
+[build-dependencies]
+cbindgen = "0.14.1"

@@ -1,0 +1,15 @@
+#! /bin/bash
+#go to root dir
+cd ..
+#save root dir in variable
+cwd=$(pwd)
+#go to Android project
+cd ../SwapiAndroidApp/app/
+mkdir jniLibs
+mkdir jniLibs/arm64
+mkdir jniLibs/armeabi
+mkdir jniLibs/x86
+
+ln -s $cwd/target/aarch64-linux-android/release/libswapi.so jniLibs/arm64/libswapi.so
+ln -s $cwd/target/armv7-linux-androideabi/release/libswapi.so jniLibs/armeabi/libswapi.so
+ln -s $cwd/target/i686-linux-android/release/libswapi.so jniLibs/x86/libswapi.so

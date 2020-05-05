@@ -1,0 +1,5 @@
+#! /bin/bash
+cd ..
+CC=aarch64-linux-android21-clang cargo build --target aarch64-linux-android --release
+CC=armv7a-linux-androideabi21-clang cargo build --target armv7-linux-androideabi --release
+CC=i686-linux-android21-clang cargo build --target i686-linux-android --release

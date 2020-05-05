@@ -1,0 +1,34 @@
+use jni_sys::*;
+use swapi_core::swapi::{People, SwapiCallback, SwapiClient};
+use crate::swig::android_logger::initLogger;
+
+foreign_class!(class Logger {
+    fn initLogger();
+});
+
+foreign_class!(class People {
+    self_type People;
+    private constructor = empty;
+    fn getName(&self) -> &str {
+        &this.name
+     }
+    fn getGender(&self) -> &str {
+        &this.gender
+    }
+    fn getMass(&self) -> &str {
+        &this.mass
+    }
+});
+
+foreign_interface!(interface SwapiPeopleLoadedListener {
+    self_type SwapiCallback + Send;
+    onLoaded = SwapiCallback::onLoad(&mut self, s: Vec<People>);
+    onError = SwapiCallback::onError(&mut self, s: &str);
+});
+
+foreign_class!(class SwapiClient {
+    self_type SwapiClient;
+    constructor SwapiClient::new() -> SwapiClient;
+    fn SwapiClient::loadAllPeople(&mut self, callback: Box<dyn SwapiCallback + Send>);
+});
+

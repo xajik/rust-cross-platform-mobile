@@ -1,0 +1,14 @@
+#! /bin/bash
+#Android
+cd swapi_adr
+cargo clean
+cd -
+
+#IOS
+cd swapi_ios
+cargo clean
+cd -
+
+#Core
+cd swapi_core
+cargo clean

@@ -1,0 +1,23 @@
+[package]
+name = "swapi_adr"
+version = "0.1.0"
+authors = ["Igor Steblii <xajik0@ggmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "swapi"
+crate-type = ["dylib"]
+
+[build-dependencies]
+rust_swig = { git = "https://github.com/Dushistov/rust_swig.git", rev = "1835ebd90a0feef5ee74b0fbe69b47de36d30c03" }
+
+[dependencies]
+swapi_core = { path = "../swapi_core/" }
+jni = { version = "0.5", default-features = false }
+jni-sys="*"
+
+log = "0.4.6"
+log-panics = "2.0"
+android_logger = "0.8"
