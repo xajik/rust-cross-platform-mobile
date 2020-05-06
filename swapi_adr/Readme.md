@@ -1,7 +1,7 @@
-# Enviroment setup:
+## Enviroment setup:
 [official example](https://mozilla.github.io/firefox-browser-architecture/experiments/2017-09-21-rust-on-android.html)
 
-# NDK
+## NDK
 Install NDK >= 20
 
 ### Exports:
@@ -40,12 +40,12 @@ linker = "<ndk path>/NDK/x86/bin/i686-linux-android-clang"
 rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android
 
 ## Build project:
-run> scripts/release_build
+run> `scripts/release_build`
 
 ## Create link from build files to android project. (You need to run it only once)
-run scripts/create_s_link
+run> `scripts/create_s_link`
 
-# #JNI Bridge
+## JNI Bridge
 
 JNI brigge is generated with [rust_swig](https://github.com/Dushistov/rust_swig) library
 

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rust.app.swapiclient.adapter.PeopleAdapter
+import com.rust.app.swapiclient.swapi.Logger
 import com.rust.app.swapiclient.swapi.People
 import com.rust.app.swapiclient.swapi.SwapiClient
 import com.rust.app.swapiclient.swapi.SwapiPeopleLoadedListener
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Logger.initLogger()
         setupRecycler()
     }
 
@@ -47,9 +49,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadPeople() {
         val client = SwapiClient()
+        val start = System.currentTimeMillis()
         client.loadAllPeople(object : SwapiPeopleLoadedListener {
 
             override fun onLoaded(s: Array<People>) {
+                val end = System.currentTimeMillis()
+                Log.d(TAG, "Execution time: ${end - start}")
                 viewAdapter.setData(s)
                 runOnUiThread {
                     viewAdapter.notifyDataSetChanged()

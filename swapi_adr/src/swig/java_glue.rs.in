@@ -1,10 +1,5 @@
 use jni_sys::*;
 use swapi_core::swapi::{People, SwapiCallback, SwapiClient};
-use crate::swig::android_logger::initLogger;
-
-foreign_class!(class Logger {
-    fn initLogger();
-});
 
 foreign_class!(class People {
     self_type People;
