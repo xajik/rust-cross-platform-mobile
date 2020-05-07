@@ -8,13 +8,28 @@
 
 import Foundation
 
-struct People: Identifiable {
+struct People: Identifiable, Codable {
   //list identifier
-  var id = UUID()
+  var id: UUID? = UUID()
   //Data fields
   var name: String?
   var gender: String?
   var mass: String?
+}
+
+extension People {
+
+  static func decode(data: Data) throws -> People? {
+    do {
+      let decoder = JSONDecoder()
+      let user = try decoder.decode(People.self, from: data)
+      return user
+    } catch let error {
+      print(error)
+      return nil
+    }
+  }
+
 }
 
 extension PeopleNative {

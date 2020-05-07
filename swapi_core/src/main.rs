@@ -5,6 +5,9 @@ pub mod swapi;
 #[macro_use]
 extern crate lazy_static;
 
+//thread sleep
+use std::{thread, time};
+
 //measure time
 use std::time::Instant;
 //DTO
@@ -14,6 +17,35 @@ use std::sync::{Arc, Mutex, Condvar};
 
 fn main() {
     println!("Main started");
+    
+    swapi_call_with_barrier();
+
+    swapi_call_with_thread_sleep();
+    
+    println!("Main finished");
+}
+
+fn swapi_call_with_thread_sleep() {
+    //call swapi client
+    let client = swapi::SwapiClient::new();
+    //Do 10 calls to check  performance
+    for _i in 0..10 {
+        thread_sleep(500);
+        let unlock = || {};
+        let callback = Callback::new(Box::new(unlock));
+        client.loadAllPeople(Box::new(callback));
+    }
+    thread_sleep(10000);
+}
+
+//Thread sleep
+fn thread_sleep(millis: u64) {
+    let sleep = time::Duration::from_millis(millis);
+    thread::sleep(sleep);
+}
+
+//use conditional var to release main thread and close program after we processed results
+fn swapi_call_with_barrier() {
     //barrier
     let con_var = Arc::new((Mutex::new(false), Condvar::new()));
     //Will be used in another thread
@@ -39,7 +71,6 @@ fn main() {
     while !*started {
         started = cvar.wait(started).unwrap();
     }
-    println!("Main finished")
 }
 
 //Create callback

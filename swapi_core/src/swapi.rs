@@ -73,7 +73,8 @@ impl SwapiClient {
             let res = load_all_people().await;
             match res {
                 Ok(root) => {
-                    println!("Response: {:#?}", root.results);
+                    //print response
+                    //println!("Response: {:#?}", root.results);
                     callback.onLoad(root.results);
                 }
                 Err(err) => {

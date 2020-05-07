@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2D9421246400240089B22D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D9420246400240089B22D /* PeopleResponse.swift */; };
 		0D54950F245DA5C400200D27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D54950E245DA5C400200D27 /* AppDelegate.swift */; };
 		0D549511245DA5C400200D27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D549510245DA5C400200D27 /* SceneDelegate.swift */; };
 		0D549513245DA5C400200D27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D549512245DA5C400200D27 /* ContentView.swift */; };
 		0D549515245DA5C700200D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D549514245DA5C700200D27 /* Assets.xcassets */; };
 		0D549518245DA5C700200D27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D549517245DA5C700200D27 /* Preview Assets.xcassets */; };
 		0D54951B245DA5C700200D27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D549519245DA5C700200D27 /* LaunchScreen.storyboard */; };
+		0D5D077D246407BB0042162D /* NativeSwapiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5D077C246407BB0042162D /* NativeSwapiClient.swift */; };
 		0DA67F6A246037DC002165A9 /* libswapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA67F69246037C1002165A9 /* libswapi.a */; };
 		0DA67F6C24603813002165A9 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA67F6B24603809002165A9 /* libresolv.tbd */; };
 		0DA67F7124604992002165A9 /* SwapiLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA67F7024604992002165A9 /* SwapiLoader.swift */; };
@@ -22,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D2D9420246400240089B22D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
 		0D54950B245DA5C400200D27 /* SwapiClientIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwapiClientIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D54950E245DA5C400200D27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D549510245DA5C400200D27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		0D549517245DA5C700200D27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0D54951A245DA5C700200D27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D54951C245DA5C700200D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D5D077C246407BB0042162D /* NativeSwapiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwapiClient.swift; sourceTree = "<group>"; };
 		0DA67F69246037C1002165A9 /* libswapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswapi.a; path = ../swapi_ios/target/universal/release/libswapi.a; sourceTree = "<group>"; };
 		0DA67F6B24603809002165A9 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		0DA67F6D24603899002165A9 /* Swapi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swapi-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -54,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D2D941F246400130089B22D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0DA67F7324618C5A002165A9 /* People.swift */,
+				0D2D9420246400240089B22D /* PeopleResponse.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		0D549502245DA5C400200D27 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +87,7 @@
 		0D54950D245DA5C400200D27 /* SwapiClientIOS */ = {
 			isa = PBXGroup;
 			children = (
+				0D2D941F246400130089B22D /* model */,
 				0DA67F78246197DB002165A9 /* vm */,
 				0DA67F7524618F4F002165A9 /* view */,
 				0DA67F6F24604978002165A9 /* swapi */,
@@ -112,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				0DA67F7024604992002165A9 /* SwapiLoader.swift */,
-				0DA67F7324618C5A002165A9 /* People.swift */,
+				0D5D077C246407BB0042162D /* NativeSwapiClient.swift */,
 			);
 			path = swapi;
 			sourceTree = "<group>";
@@ -206,7 +220,9 @@
 			files = (
 				0D54950F245DA5C400200D27 /* AppDelegate.swift in Sources */,
 				0D549511245DA5C400200D27 /* SceneDelegate.swift in Sources */,
+				0D5D077D246407BB0042162D /* NativeSwapiClient.swift in Sources */,
 				0D549513245DA5C400200D27 /* ContentView.swift in Sources */,
+				0D2D9421246400240089B22D /* PeopleResponse.swift in Sources */,
 				0DA67F7124604992002165A9 /* SwapiLoader.swift in Sources */,
 				0DA67F7A246197E8002165A9 /* PeopleViewModel.swift in Sources */,
 				0DA67F7424618C5A002165A9 /* People.swift in Sources */,
@@ -262,6 +278,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -322,6 +339,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

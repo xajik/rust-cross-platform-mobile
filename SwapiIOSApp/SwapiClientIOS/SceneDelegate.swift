@@ -14,6 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   var peopleViewModel = PeopleViewModel()
+  //Rust client
+  lazy var client = SwapiLoader()
+  //SwiftClient
+  lazy var nativeClient = NativeSwapiClient()
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,7 +25,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
     // Create the SwiftUI view that provides the window contents.
-    let contentView = ContentView()
+    let contentView = ContentView(actionLoadPeople: {
+
+      self.loadPeople()
+      //Compare with native swift execution time
+      //self.loadPeopleNative()
+    })
 
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {
@@ -42,15 +51,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func sceneDidBecomeActive(_ scene: UIScene) {
     // Called when the scene has moved from an inactive state to an active state.
     // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+  }
 
-    let client = SwapiLoader()
+  //Rust client
+  func loadPeople() {
     let methodStart = Date()
     client.loadPeople(resultsCallback: {[weak self] data in
       guard let self = self else {return;}
 
       let methodFinish = Date()
       let executionTime = methodFinish.timeIntervalSince(methodStart)
-      print("Execution time: \(executionTime)")
+      print("Rust execution time: \(executionTime)")
 
       DispatchQueue.main.async {
         self.peopleViewModel.setData(newItmes: data)
@@ -58,7 +69,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       }, errorCallback: {error in
         print("Error: \(error)")
     })
-    
+  }
+
+  //Swift client
+  func loadPeopleNative() {
+    let methodStart = Date()
+    nativeClient.loadPeople { [weak self] result in
+      guard let self = self else {return;}
+
+      let methodFinish = Date()
+      let executionTime = methodFinish.timeIntervalSince(methodStart)
+      print("Swift execution time: \(executionTime)")
+
+      if let people = result {
+        DispatchQueue.main.async {
+          self.peopleViewModel.setData(newItmes: people)
+        }
+      }
+    }
   }
 
   func sceneWillResignActive(_ scene: UIScene) {

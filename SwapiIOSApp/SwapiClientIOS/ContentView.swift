@@ -10,12 +10,24 @@ import SwiftUI
 
 struct ContentView: View {
 
+  let actionLoadPeople: (() -> Void)
   @EnvironmentObject var peopleViewModel: PeopleViewModel
 
   var body: some View {
     NavigationView {
-      List(peopleViewModel.items) { item in
-        PeopleRow(item: item)
+      VStack {
+        List(peopleViewModel.items) { item in
+          PeopleRow(item: item)
+        };
+        Button(action: {
+          self.actionLoadPeople()
+        }) {
+          Text("Load people")
+          .foregroundColor(.purple)
+          .font(.title)
+          .padding()
+          .border(Color.purple, width: 5)
+        };
       }
       .navigationBarTitle("SWAPI Rust")
     }
@@ -25,6 +37,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    ContentView(actionLoadPeople: {})
   }
 }
