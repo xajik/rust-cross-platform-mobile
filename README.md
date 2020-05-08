@@ -1,6 +1,8 @@
 # swapi-rust-mobile
 Crossplatform mobile solution based on Rust for IOS &amp; Android.
 
+***More details here:["Rust & cross-platform mobile development"](https://medium.com/@igor.stebliy/rust-cross-platform-mobile-development-9117a67ac9b7)***
+
 In this project you'll find Rust network client, that laods and serialize data from 
 [star wars API](https://swapi.dev/people) and pass it to Android and IOS.
 
