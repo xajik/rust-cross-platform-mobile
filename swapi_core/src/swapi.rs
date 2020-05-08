@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 //URLs
 const SWAPI_BASE_URL: &str = "https://swapi.dev/api/";
-const PEOPLE: &str = "people";
+const PEOPLE: &str = "people/";
 
 //Lazy static
 lazy_static! {
