@@ -4,14 +4,17 @@ use serde::{Deserialize, Serialize};
 const SWAPI_BASE_URL: &str = "https://swapi.dev/api/";
 const PEOPLE: &str = "people";
 
-//Threaded runtime
+//Lazy static
 lazy_static! {
+    //runtime with threaded pool
     static ref RUN_TIME: tokio::runtime::Runtime = tokio::runtime::Builder::new()
         .threaded_scheduler()
         .enable_all()
         .build()
         .unwrap();
-    }
+    // HTTP client to share
+    static ref HTTP_CLIENT: reqwest::Client = reqwest::Client::new();
+}
 
 //DTO
 #[repr(C)]
@@ -90,7 +93,8 @@ impl SwapiClient {
 
 pub async fn load_all_people() -> Result<ResponsePeople, Box<dyn std::error::Error>> {
     let url = format!("{}{}", SWAPI_BASE_URL, PEOPLE);
-    let people: ResponsePeople = reqwest::get(url.as_str())
+    let people: ResponsePeople = HTTP_CLIENT.get(url.as_str())
+        .send()
         .await?
         .json()
         .await?;
